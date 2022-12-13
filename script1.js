@@ -1,3 +1,4 @@
+'use strict'
 // (first 10 even numbers)//
 // let arr = []
 // for (let i = 2; i <= 10; i++){
@@ -364,18 +365,135 @@
 // console.log(Boolean({}))
 
 // Challenge #3
-const dolphin_score_one = 96
-const dolphin_score_two = 108
-const dolphin_score_three = 89
-const dolphin_avg_score = (dolphin_score_one + dolphin_score_two + dolphin_score_three) / 3
-const koala_score_one = 88
-const koala_score_two = 91
-const koala_score_three = 110
-const koala_avg_score = (koala_score_one + koala_score_two + koala_score_three) / 3
-if(dolphin_avg_score > koala_avg_score){
-    console.log(`Team Dolphin with score ${dolphin_avg_score} wins`)
-} else if(dolphin_avg_score === koala_avg_score){
-    console.log("Its a draw")
-}else {
-    console.log(`Team Koala with points ${koala_avg_score} wins`)
+// const dolphin_avg_score = (96 + 108 + 89) / 3
+// const koala_avg_score = (88 + 91 + 110) / 3
+// if(dolphin_avg_score > koala_avg_score){
+//     console.log(`Team Dolphin with score ${dolphin_avg_score} wins`)
+// } else if(dolphin_avg_score === koala_avg_score){
+//     console.log("Its a draw")
+// }else {
+//     console.log(`Team Koala with points ${koala_avg_score} wins`)
+// }
+
+// const dolphin_avg_score = (97 + 112 + 101) / 3
+// const koala_avg_score = (109 + 95 + 106) / 3
+// if(dolphin_avg_score > 100 && dolphin_avg_score >koala_avg_score){
+//     console.log("Team Dolphin wins")
+// }else if(koala_avg_score > 100 && koala_avg_score > dolphin_avg_score){
+//     console.log("Team Koala wins")
+// }else {
+//     console.log('A draw')
+// }
+
+// //Coding challenge #4
+// const billValue = 275
+// const tipValue = billValue > 50 && billValue < 300 ? billValue * 0.15: billValue * 0.2
+// let finalValue = billValue + tipValue
+// console.log(`Bill is ${billValue}, tip is ${tipValue} and total is ${finalValue}`)
+
+// //function declaration
+// const calcAge = function (birthYear){
+//     return 2037 - birthYear
+// }
+// console.log(calcAge(1991))
+
+// //arrow function
+// const calcAge = birthYear => 2037 - birthYear
+// console.log(calcAge(1991))
+
+// const retireYear = (birthYear, firstName) => {
+//     const age = 2037 - birthYear
+//     const retirement = 65 - age
+//     // return retirement
+//     return `${retirement} years remaining for ${firstName}'s retirement`
+// }
+// console.log(retireYear(1991, 'John'))
+
+//functions inside function
+// function cutfruits(fruit){
+//     return fruit * 4
+// }
+// function fruitprocessor(apples, oranges){
+//     const applepieces = cutfruits(apples)
+//     const orangepieces = cutfruits(oranges)
+
+//     return `Juice with ${applepieces} pieces of apple and ${orangepieces} pieces of orange`
+// }
+// console.log(fruitprocessor(2,3))
+
+// //section 3 coding challenge #1
+// const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3
+// const avgDolphins = calcAverage(44,23,71)
+// const avgKoalas = calcAverage(65,54,49)
+
+// function checkwinner(avgDolphins, avgKoalas){
+//     if(avgDolphins >= avgKoalas * 2){
+//         return `Dolphins win ${avgDolphins} vs ${avgKoalas}`
+//     }else if(avgKoalas >= avgDolphins * 2){
+//         return `Koalas win ${avgKoalas} vs ${avgDolphins}`
+//     }else return `No winner`
+// }
+// console.log(checkwinner(avgDolphins, avgKoalas))
+
+// const arr = [1,2,3,8,7,6]
+// console.log(arr.indexOf(2))
+// console.log(arr.includes(3))
+
+// //coding challenge #2
+// const calcTip = (billValue) => billValue >= 50 && billValue <= 300? billValue * 0.15: billValue * 0.2
+// console.log(calcTip(100))
+// const bills = [125, 555, 44]
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
+// console.log(tips)
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+// console.log(total)
+
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Schmedtmann',
+//     age: 2037 - 1991,
+//     job: 'teacher',
+//     friends: ['Michael', 'Peter', 'Steven']
+// }
+// console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`)
+
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Schmedtmann',
+//     birthYear: 1991,
+//     job: 'teacher',
+//     friends: ['Michael', 'Peter', 'Steven'],
+//     calcAge: function(){
+//         return 2037 - this.birthYear
+//     },
+//     hasDrivingLicence: false
+// }
+// console.log(jonas.calcAge())
+
+// console.log(`${jonas.firstName} is a ${jonas.calcAge()} year old teacher and has ${jonas.hasDrivingLicence ? 'a': 'no'} driving licence`)
+
+//coding challenge #3
+
+const mark = {
+    fullName: "Mark Miller",
+    mass: 78,
+    height: 1.69,
+    calcBMI: function(){
+        this.bmi = this.mass / (this.height **2)
+        return this.bmi
+    }
+}
+const john = {
+    fullName: "John Smith",
+    mass: 92,
+    height: 1.95,
+    calcBMI: function(){
+        this.bmi = this.mass / (this.height **2)
+        return this.bmi
+    }
+}
+if(mark.calcBMI() > john.calcBMI()){
+    console.log(`${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)}) is higher than ${john.fullName}'s BMI (${john.calcBMI(john.bmi)})`)
+} else {
+    console.log(`${john.fullName}'s BMI (${john.calcBMI(john.bmi)}) is higher than ${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)})`)
 }
