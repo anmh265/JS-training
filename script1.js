@@ -474,26 +474,179 @@
 
 //coding challenge #3
 
-const mark = {
-    fullName: "Mark Miller",
-    mass: 78,
-    height: 1.69,
-    calcBMI: function(){
-        this.bmi = this.mass / (this.height **2)
-        return this.bmi
-    }
-}
-const john = {
-    fullName: "John Smith",
-    mass: 92,
-    height: 1.95,
-    calcBMI: function(){
-        this.bmi = this.mass / (this.height **2)
-        return this.bmi
-    }
-}
-if(mark.calcBMI() > john.calcBMI()){
-    console.log(`${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)}) is higher than ${john.fullName}'s BMI (${john.calcBMI(john.bmi)})`)
-} else {
-    console.log(`${john.fullName}'s BMI (${john.calcBMI(john.bmi)}) is higher than ${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)})`)
+// const mark = {
+//     fullName: "Mark Miller",
+//     mass: 78,
+//     height: 1.69,
+//     calcBMI: function(){
+//         this.bmi = this.mass / (this.height **2)
+//         return this.bmi
+//     }
+// }
+// const john = {
+//     fullName: "John Smith",
+//     mass: 92,
+//     height: 1.95,
+//     calcBMI: function(){
+//         this.bmi = this.mass / (this.height **2)
+//         return this.bmi
+//     }
+// }
+// if(mark.calcBMI() > john.calcBMI()){
+//     console.log(`${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)}) is higher than ${john.fullName}'s BMI (${john.calcBMI(john.bmi)})`)
+// } else {
+//     console.log(`${john.fullName}'s BMI (${john.calcBMI(john.bmi)}) is higher than ${mark.fullName}'s BMI (${mark.calcBMI(mark.bmi)})`)
+// }
+
+// let dice = Math.floor(Math.random() * 6) + 1
+// while(dice < 3){
+//     console.log(`You got ${dice}`)
+//     dice = Math.floor(Math.random() * 6) + 1
+// }
+
+// //Coding challenge #4
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]
+// const tips = []
+// const totals = []
+// const calcTip = (billValue) => billValue >= 50 && billValue <= 300? billValue * 0.15: billValue * 0.2
+
+// for(let i = 0; i < bills.length; i++){
+//     tips.push(calcTip(bills[i]))
+//     totals.push(tips[i] + bills[i])
+// }
+// console.log(tips)
+// console.log(totals)
+// let sum = 0
+// function calcAverage(arr){
+//     for(let i = 0; i < arr.length; i++){
+//         sum += arr[i]
+//     }
+//     let avg = sum/arr.length
+//     return avg
+// }
+// console.log(calcAverage(totals))
+// let string = ""
+// const printforecast = function(arr){
+//     for(let i = 0; i < arr.length; i++){
+//         string += `${arr[i]}C in ${i + 1} days ...`
+//     }
+//     return string
+// }
+// console.log(printforecast([12, 5, -5, 0, 4]))
+
+
+// const myname  = 'Jonas'
+
+// function first(){
+//     const age = 30 
+    
+//     if(age >= 30){
+//         const decade = 3
+//         var millenial = true
+//     }
+
+//     function second(){
+//         const job = 'teacher'
+
+//         console.log(`${myname} is a ${age} year old ${job}`)
+//     }
+//     second()
+// }
+
+// first()
+
+// const a = 10
+// if(a > 8){
+//     var b = 5
+// }
+// console.log(b)
+
+// const a = 'Jonas'
+// first()
+
+// function first(){
+//     const b = 'Hello'
+//     second()
+
+//     function second(){
+//         const c = 'Hi!'
+//         third()
+//     }
+// }
+// function third(){
+//     const d = 'Hey!'
+//     console.log(d + c + b + a)
+// }
+
+// function calcAge(birthYear){
+//     const age = 2037 - birthYear
+
+//     function printAge(){
+//         const output = `${firstName}, you are ${age}, born in ${birthYear}`
+//         console.log(output)
+
+//         if(birthYear >= 1981 && birthYear <= 1996){
+//             var millenial = true
+
+//             //creating new variable with same name as outer scope's variable
+//             const firstName = 'Steven'
+
+//             //Reassigning outer scope's variable
+//             output = 'New output'
+//             const str = "Hello"
+
+//             function add(a, b){
+//                 return a + b
+//             }
+//         }
+//         console.log(millenial)
+//         add(2, 3)
+//     }
+//     printAge()
+//     return age
+// }
+// const firstName = 'Jonas'
+// calcAge(1991)
+
+// const myName = 'Jonas'
+// if(myName === 'Jonas'){
+//     console.log(`Jonas is a ${job}`)
+//     const age = 2037 - 1989
+//     console.log(age)
+//     const job = 'teacher'
+// }
+
+// //variables
+// console.log(me)
+// console.log(job)
+// console.log(year)
+
+// var me = 'Jonas'
+// let job = 'teacher'
+// const year = 1991
+
+// //functions
+// console.log(addDecl(2,3))
+// console.log(addExpr(2,3))
+// console.log(addArrow(2,3))
+
+// function addDecl(a,b){
+//     return a + b
+// }
+
+// const addExpr = function(a,b){
+//     return a + b
+// }
+
+// const addArrow = (a, b) => {
+//     return a + b
+// }
+
+
+//Example of var hoisting problem
+if(!numProducts) deleteShoppingCart()
+var numProducts = 10
+
+function deleteShoppingCart(){
+    console.log('All products are deleted')
 }
