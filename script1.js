@@ -643,10 +643,140 @@
 // }
 
 
-//Example of var hoisting problem
-if(!numProducts) deleteShoppingCart()
-var numProducts = 10
+// //Example of var hoisting problem
+// if(!numProducts) deleteShoppingCart()
+// var numProducts = 10
 
-function deleteShoppingCart(){
-    console.log('All products are deleted')
+// function deleteShoppingCart(){
+//     console.log('All products are deleted')
+// }
+
+// const jonas = {
+//     name: 'Jonas',
+//     year: 1989,
+//     calcAge: function(){
+//         return 2037 - this.year
+//     }
+// }
+// console.log(jonas.calcAge())
+
+//function expression 'this'
+// const calcAge =function (birthYear){
+//     console.log(2037 - birthYear)
+//     console.log(this)
+// }
+// calcAge(1980)
+
+//arrow-function 'this'
+// const calcAgeArrow =(birthYear) =>{
+//     console.log(2037 - birthYear)
+//     console.log(this)
+// }
+// calcAgeArrow(1980)
+
+// const jonas = {
+//     name: 'Jonas',
+//     year: 1989,
+//     calcAge: function(){
+//         return 2037 - this.year
+//     }
+// }
+// jonas.calcAge()
+
+// const matilda = {
+//     year: 2017
+// }
+
+// matilda.calcAge = jonas.calcAge
+// console.log(matilda.calcAge())
+// const f = jonas.calcAge
+// f()
+
+//this in arrow function
+// const jonas = {
+//     firstName: 'Jonas',
+//     year: 1989,
+//     calcAge: function(){
+//         return 2037 - this.year
+//     },
+//     greet: () => console.log(this)
+// }
+// jonas.greet()
+
+//this inside function of function in an object
+// const jonas = {
+//     firstName: 'Jonas',
+//     year: 1989,
+//     calcAge: function(){
+//         console.log(2037 - this.year)   
+//         const self = this
+//         const isMillenial = function (){
+//             console.log(self.year >= 1981 && self .year <= 1996)
+//             // console.log(this.year >= 1981 && this.year <= 1996)
+//         }
+//         isMillenial()
+//     },
+//     greet: () => console.log(this)
+// }
+// jonas.greet()
+// jonas.calcAge()
+
+// const addExpr = function (a,b){
+//     console.log(arguments)
+//     return a + b
+// }
+// addExpr(2, 4)
+
+// var addArrow = (a,b) => {
+//     console.log(arguments)
+//     return a + b
+// }
+// addArrow(4,7)
+
+//Primitive vs reference
+
+//primitive
+let age = 30
+const oldAge = age
+age = 31
+console.log(age)
+console.log(oldAge)
+
+//primitive
+// const me = {
+//     name: 'Jonas',
+//     age: 30
+// }
+// const friend = me
+// friend.age = 27
+
+// console.log('Friends:',friend)
+// console.log('Me:', me)
+
+
+//reference types
+const jessica = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27
 }
+const marriedJessica = jessica
+marriedJessica.lastName = 'Davis'
+console.log(jessica)
+console.log(marriedJessica)
+
+
+//copying objects
+const jessica2 = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+    family: ['Alice', 'Bob']
+}
+
+const jessicaCopy = Object.assign({}, jessica2)
+jessicaCopy.lastName = 'Davis'
+jessicaCopy.family.push('Mary')
+jessicaCopy.family.push('John')
+console.log(jessica2)
+console.log(jessicaCopy)
