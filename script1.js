@@ -736,11 +736,11 @@
 //Primitive vs reference
 
 //primitive
-let age = 30
-const oldAge = age
-age = 31
-console.log(age)
-console.log(oldAge)
+// let age = 30
+// const oldAge = age
+// age = 31
+// console.log(age)
+// console.log(oldAge)
 
 //primitive
 // const me = {
@@ -755,28 +755,41 @@ console.log(oldAge)
 
 
 //reference types
-const jessica = {
-    firstName: 'Jessica',
-    lastName: 'Williams',
-    age: 27
-}
-const marriedJessica = jessica
-marriedJessica.lastName = 'Davis'
-console.log(jessica)
-console.log(marriedJessica)
+// const jessica = {
+//     firstName: 'Jessica',
+//     lastName: 'Williams',
+//     age: 27
+// }
+// const marriedJessica = jessica
+// marriedJessica.lastName = 'Davis'
+// console.log(jessica)
+// console.log(marriedJessica)
 
 
 //copying objects
-const jessica2 = {
-    firstName: 'Jessica',
-    lastName: 'Williams',
-    age: 27,
-    family: ['Alice', 'Bob']
+// const jessica2 = {
+//     firstName: 'Jessica',
+//     lastName: 'Williams',
+//     age: 27,
+//     family: ['Alice', 'Bob']
+// }
+
+// const jessicaCopy = Object.assign({}, jessica2)
+// jessicaCopy.lastName = 'Davis'
+// jessicaCopy.family.push('Mary')
+// jessicaCopy.family.push('John')
+// console.log(jessica2)
+// console.log(jessicaCopy)
+
+//array destructuring
+const obj = {
+    nmae: 'Jonas',
+    age: 34,
+    likes: ['football', 'cricket', 'basketball', 'snooker', 'chess'],
+    hobby: function(index1, index2){
+        return [this.likes[index1], this.likes[index2]]
+    }
 }
 
-const jessicaCopy = Object.assign({}, jessica2)
-jessicaCopy.lastName = 'Davis'
-jessicaCopy.family.push('Mary')
-jessicaCopy.family.push('John')
-console.log(jessica2)
-console.log(jessicaCopy)
+const [like1, like2] = (obj.hobby(1, 2))
+console.log(like1, like2)
