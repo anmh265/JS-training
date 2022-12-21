@@ -782,14 +782,878 @@
 // console.log(jessicaCopy)
 
 //array destructuring
-const obj = {
-    nmae: 'Jonas',
-    age: 34,
-    likes: ['football', 'cricket', 'basketball', 'snooker', 'chess'],
-    hobby: function(index1, index2){
-        return [this.likes[index1], this.likes[index2]]
+// const obj = {
+//     nmae: 'Jonas',
+//     age: 34,
+//     likes: ['football', 'cricket', 'basketball', 'snooker', 'chess'],
+//     hobby: function(index1, index2){
+//         return [this.likes[index1], this.likes[index2]]
+//     }
+// }
+
+// const [like1, like2] = (obj.hobby(1, 2))
+// console.log(like1, like2)
+
+// const nested = [2,4,[8,9]]
+// const [x, , [a,b]] = nested
+// console.log(x, a, b)
+
+//default values
+// const [a,b,c=1] = [8,9]
+// console.log(a,b,c)
+
+// const obj = {
+//     firstName: 'Jonas',
+//     lastName: 'Williams',
+//     age: 34,
+// }
+
+// const {firstName, lastName, age} = obj
+// console.log(firstName, lastName, age)
+
+// let a = 11
+// let b = 20
+// const obj = {a: 23, b:30, c:17};
+// ({a, b} = obj)
+// console.log(a, b)
+
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+
+// const {
+//     fri : {open: o, close: c} 
+// } = openingHours
+// console.log(o, c)
+
+//object destructuring and passing to a function
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//     [weekdays[3]]: {
+//       open: 12,
+//       close: 22,
+//     },
+//     [weekdays[4]]: {
+//       open: 11,
+//       close: 23,
+//     },
+//     [weekdays[5]]: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//     orderDelivery: function ({starterIndex, mainIndex}){
+//         console.log(starterIndex, mainIndex)
+//     }
+//   };
+//   openingHours.orderDelivery({
+//     time: '23:30',
+//     address: 'Via del Sole, 231',
+//     mainIndex: 2,
+//     starterIndex: 2
+//   })
+
+//spread operator
+//   const arr = [7, 8, 9]
+//   const newArr = [1, 2, ...arr]
+//   console.log(newArr)
+
+// const restaurant = {
+//     name: 'Classico Italiano',
+//     location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//     oderPasta: function(ing1, ing2, ing3){
+//         console.log(
+//             `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+//           );
+//     }
+// }
+
+//shallow copy of array
+// const copyArray = [...restaurant.mainMenu]
+// console.log(copyArray)
+
+//merge 2 arrayS
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
+// console.log(menu)
+
+// const num = 12345
+// const arr = [...num]
+// console.log(arr)
+
+// const ingredients = [prompt('Ingredient1:'), prompt('Ingredient2:'), prompt('Ingredient3:')]
+// console.log(...ingredients)
+
+// const newRestaurant = {
+//     foundedIn: 1998,
+//     ...restaurant,
+//     founder: 'Guiseppe'
+// }
+// console.log(newRestaurant)
+// const restaurantCopy = {...restaurant}
+// restaurantCopy.name = 'Ristorante Roma'
+// console.log(restaurantCopy.name)
+// console.log(restaurant.name)
+
+
+//rest operator
+// const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu]
+// console.log(pizza, risotto, otherFood)
+
+//rest operator on objects
+// const restaurant = {
+//     name: 'Classico Italiano',
+//     location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  
+//     openingHours: {
+//       thu: {
+//         open: 12,
+//         close: 22,
+//       },
+//       fri: {
+//         open: 11,
+//         close: 23,
+//       },
+//       sat: {
+//         open: 0, // Open 24 hours
+//         close: 24,
+//       },
+//     },
+//   };
+//   const { sat, ...weekdays} = restaurant.openingHours
+//   console.log(weekdays)
+
+//rest in functions
+// const add = function(...numbers){
+//     let sum = 0
+//     for(let i = 0; i < numbers.length; i++){
+//         sum += numbers[i]
+//     }
+//      console.log(sum)
+// }
+// // add(8,5,7,10)
+// const x = [23, 5, 7]
+// add(...x)
+
+// const restaurant = {
+//     name: 'Classico Italiano',
+//     location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//     oderPasta: function(ing1, ing2, ing3){
+//         console.log(
+//             `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+//           );
+//     },
+//     orderPizza: function(mainIngredient, ...otherIngredients){
+//         console.log(mainIngredient)
+//         console.log(otherIngredients)
+//     }
+// }
+// restaurant.orderPizza('mushrooms', 'onions', 'spinach')
+// restaurant.orderPizza('mushrooms')
+
+
+//Short circuiting
+//OR
+// console.log(3 || 'Jonas')
+// console.log(''|| 'Jonas')
+// console.log(undefined || '' || 'Hello'|| 5)
+
+// restaurant.numGuests = 20
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+// console.log(guests1)
+
+// const guests = restaurant.numGuests || 10
+// console.log(guests)
+
+//AND
+// restaurant.numGuests = ''
+// const guests = restaurant.numGuests && 10
+// console.log(guests)
+// console.log('Jonas' && 0)
+
+// console.log('Hello' && 15 && null && 'Jonas')
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
+
+//Nullish coalescing operator
+// restaurant.numGuests = null
+// const guests = restaurant.numGuests ?? 10
+// console.log(guests)
+
+//Logical assignemnt operator
+//OR assignemtn operator
+// const rest1 = {
+//     name: 'Capri',
+//     numGuests: 5
+// }
+// const rest2 = {
+//     name: 'La Piazza',
+//     owner: 'Giovanni Rossi'
+// }
+
+// rest1.numGuests = rest1.numGuests || 10
+// rest2.numGuests = rest2.numGuests || 15
+
+// //or
+
+// rest1.numGuests ||= 10
+// rest2.numGuests ||= 20
+
+//nullish operator
+// rest1.numGuests ??= 10
+// rest2.numGuests ??= 10
+
+//AND assignement operator
+// rest1.owner = rest1.owner && '<ANONYMOUS'
+// rest1.owner &&= '<ANONYMOUS'
+// rest2.owner &&= '<ANONYMOUS'
+
+// console.log(rest1)
+// console.log(rest2)
+
+//Coding challenge
+
+// const game = {
+//     team1: 'Bayern Munich',
+//     team2: 'Borrussia Dortmund',
+//     players: [
+//     [
+//     'Neuer',
+//     'Pavard',
+//     'Martinez',
+//     'Alaba',
+//     'Davies',
+//     'Kimmich',
+//     'Goretzka',
+//     'Coman',
+//     'Muller',
+//     'Gnarby',
+//     'Lewandowski',
+//     ],
+//     [
+//     'Burki',
+//     'Schulz',
+//     'Hummels',
+//     'Akanji',
+//     'Hakimi',
+//     'Weigl',
+//     'Witsel',
+//     'Hazard',
+//     'Brandt',
+//     'Sancho',
+//     'Gotze',
+//     ],
+//     ],
+//     score: '4:0',
+//     scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//     'Hummels'],
+//     date: 'Nov 9th, 2037',
+//     odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//     },
+//     };
+
+// const [players1, players2] = game.players 
+// // console.log(players1)
+// // console.log(players2)
+
+
+// const [gk, ...fieldPlayers] = players1
+// // console.log(gk)
+// // console.log(fieldPlayers)
+
+
+// const allPlayers = [...players1, ...players2]
+// // console.log(allPlayers)
+
+
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic']
+// // console.log(players1Final)
+
+
+// const {odds: {team1, x: draw, team2}} = game
+// // console.log(team1, draw, team2) 
+
+// function printGoals(...playerGoals){
+//     console.log(`${playerGoals.length} goals were scored`)
+// }
+// printGoals(...game.scored)
+
+// team1 < team2 && console.log('Team1 is more likely to win')
+// team1 > team2 && console.log('Team2 is more likely to win')
+
+//for of loop
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
+
+// for(const item of menu)
+// console.log(item)
+
+// enhanced object literals
+
+   const openingHours = {
+      thu: {
+        open: 12,
+        close: 22,
+      },
+      fri: {
+        open: 11,
+        close: 23,
+      },
+      sat: {
+        open: 0, // Open 24 hours
+        close: 24,
+      },
+    };
+ 
+const restaurants = {
+    name: 'Classico Italiano',
+    location: 'Via Angelo Tavanti 23, Firenze, Italy',
+    categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+    starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+    mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    openingHours,
+    orderPizza(mainIngredient, ...otherIngredients){
+        console.log(mainIngredient)
+        console.log(otherIngredients)
     }
 }
+// // if(restaurant.openingHours && restaurant.openingHours.mon){
+// //     console.log(restaurant.openingHours.mon.open)
+// // }
 
-const [like1, like2] = (obj.hobby(1, 2))
-console.log(like1, like2)
+// // console.log(restaurant.openingHours.mon.open)
+
+// //With optional chaining
+// // console.log(restaurants.openingHours.mon?.open)
+
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for(const day of weekdays){
+//     const open = restaurants.openingHours[day]?.open ?? 'Closed'
+//     console.log(`On ${day} we open at ${open}`)
+// }
+
+
+//Methods
+// console.log(restaurants.order?.(0, 1) ?? 'No methods')
+
+//Arrays
+// const users = [{ name: 'Jonas', age: 34}]
+// console.log(users[0].name ?? 'array empty')
+
+// const properties = Object.keys(openingHours)
+// console.log(properties)
+
+// for(const day of Object.keys(openingHours))
+// console.log(day)
+
+//Property names
+// let openStr = `We are open on ${properties.length} days: `
+// for(const day of properties){
+//     openStr += `${day}, `
+// }
+// console.log(openStr)
+
+//Property values
+// const values = Object.values(openingHours)
+// // console.log(values)
+
+// //Entire object
+// const entries = Object.entries(openingHours)
+// console.log(entries)
+
+// for (const [key, {open, close}] of entries){
+//     console.log(`On ${key} we open at ${open} and close at ${close}`)
+// }
+
+//Coding challenge 
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+    [
+    'Neuer',
+    'Pavard',
+    'Martinez',
+    'Alaba',
+    'Davies',
+    'Kimmich',
+    'Goretzka',
+    'Coman',
+    'Muller',
+    'Gnarby',
+    'Lewandowski',
+    ],
+    [
+    'Burki',
+    'Schulz',
+    'Hummels',
+    'Akanji',
+    'Hakimi',
+    'Weigl',
+    'Witsel',
+    'Hazard',
+    'Brandt',
+    'Sancho',
+    'Gotze',
+    ],
+    ],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+    'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+    },
+    };
+
+    // for (const [key,player] of game.scored.entries())
+    // console.log(`Goal ${key + 1}: ${player}`)
+
+    // let avg = 0
+    // for(const value of Object.values(game.odds)){
+    //     avg += value
+    // }
+    // avg = avg / Object.values(game.odds).length
+    // console.log(avg)
+
+    // for(const [team, odd] of Object.entries(game.odds)){
+    //     // const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`
+    //     // console.log(`Odds of ${teamStr} ${odd}`)
+    //     console.log(typeof team)
+    // }
+
+    // const obj = {
+    //     firstName: 'Jonas',
+    //     age: 34
+    // }
+    // console.log(obj['firstName'])
+
+    //SET
+    // const orderSet = new Set(['Pasta', 'Pizza', 'Pasta', 'Risotto', 'Pasta'])
+    // console.log(new Set(orderSet))
+    // console.log(orderSet.size)
+    // orderSet.add('Garlic bread')
+    // orderSet.delete('Garlic bread')
+    // // orderSet.clear()
+    // console.log(orderSet)
+    
+    // const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']
+    // const staffUnique = [...new Set(staff)]
+    // console.log(staffUnique)
+    // console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size)
+    // // console.log(new Set('Jonas'))
+
+    //MAP
+    // const rest = new Map()
+    // rest.set('name', 'Classico Italiano')
+    // rest.set(1, 'Firenze, Italy')
+    // console.log(rest.set(2, 'Lisbon'))
+
+    // rest.set(['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+    // .set('open',11)
+    // .set('close', 23)
+    // .set(true, 'We are open :D')
+    // .set(false, 'We are closed :(')
+
+    // console.log(rest.get('name'))
+    // console.log(rest.get(false))
+
+    const time = 10
+    // console.log(rest.get(time > rest.get('open') && time < rest.get('close')))
+
+    // console.log(rest.has('categories'))
+    // rest.delete(2)
+    // console.log(rest)
+    // console.log(rest.size)
+
+    // const arr = [1,2]
+    // rest.set(arr, 'Test')
+    // console.log(rest)
+    // console.log(rest.get(arr))
+
+
+    //Arrays to map
+    const question = new Map([
+        ['question', 'What is the best programming language in the world?'],
+        [1, 'C'],
+        [2, 'Java'],
+        [3, 'Javascript'],
+        ['correct', 3],
+        [true, 'Correct answer'],
+        [false, 'Try again']
+    ])
+    // console.log(question)
+
+
+    // const hoursMap = new Map(Object.entries(openingHours))
+    // console.log(hoursMap)
+
+    // for(const [key, value] of question){
+    //     if(typeof key === 'number'){
+    //         console.log(`Option ${key}: ${value}`)
+    //     }
+    // }
+    // const answer = Number(prompt('Your answer: '))
+    // console.log(question.get(question.get('correct') === answer))
+
+    //Maps to Arrays
+    // console.log([...question])
+    // console.log([...question.keys()])
+    // console.log([...question.values()])
+
+
+    //Coding challenge 3
+    // const gameEvents = new Map([
+    //     [17, '⚽ GOAL'],
+    //     [36, '🔁 Substitution'],
+    //     [47, '⚽ GOAL'],
+    //     [61, '🔁 Substitution'],
+    //     [64, '🔶 Yellow card'],
+    //     [69, '🔴 Red card'],
+    //     [70, '🔁 Substitution'],    
+    //     [72, '🔁 Substitution'],
+    //     [76, '⚽ GOAL'],
+    //     [80, '⚽ GOAL'],
+    //     [92, '🔶 Yellow card'],
+    //     ]);
+    
+    // const events = [...new Set(gameEvents.values())]
+    // console.log(events)
+
+    // gameEvents.delete(64)
+    
+    // console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`)
+
+    // for(const[key, value] of gameEvents){
+    //    const half = key <= 45 ? 'FIRST': 'SECOND'
+    //     console.log(`${half} HALF ${key}: ${value}`)
+    // }
+
+    //Working with Strings
+    // const airline = 'TAP Air Portugal'
+    // const plane = 'A320'
+
+    // console.log(plane[0])
+    // console.log(airline.indexOf('r'))
+    // console.log(airline.lastIndexOf('r'))
+    // console.log(airline.slice(4))
+    // console.log(airline.slice(4, 7))
+    // console.log(airline.slice(0, airline.indexOf(' ')))
+    // console.log(airline.slice(airline.lastIndexOf(' ') + 1))
+
+    // const checkMiddleSeat = function(seat){
+    //     const s = seat.slice(-1)
+    //     s === 'B' || s === 'E'? console.log('Middle seat'): console.log('Not a middle seat')
+    // }
+    // checkMiddleSeat('11B')
+    // checkMiddleSeat('23C')
+
+    // console.log(typeof new String('Jonas'))
+    // console.log(typeof new String('Jonas').slice(1))
+
+    // console.log(airline.toLowerCase())
+    // console.log(airline.toUpperCase())
+
+    // const passenger = 'Jonas'
+    // const passengerLower = passenger.toLowerCase()
+    // const passengerCorrect = passenger[0].toUpperCase() + passenger.slice(1)
+    // console.log(passengerCorrect)
+
+    // const priceGB = '288,97$'
+    // const priceINR = priceGB.replace('$', 'Rs').replace(',', '.')
+    // console.log(priceINR)
+
+    // const announcement = 'All pasengers come to boarding door 23, Boarding door 23!'
+
+    // console.log(announcement.replace('door', 'gate'))
+
+    // //replace all occurences of door- 
+    // console.log(announcement.replace(/door/g, 'gate'))
+
+    // const plane = 'Airbus A320neo'
+    // console.log(plane.includes('Air'))
+    // console.log(plane.includes('boeing'))
+    // console.log(plane.startsWith('Airbus'))
+
+    // if(plane.startsWith('Airbus') && plane.endsWith('neo')){
+    //     console.log('Part of the airbus family')
+    // }
+
+    // const checkBaggage = function(items){
+    //     const baggage = items.toLowerCase()
+    //     if(baggage.includes('knife') || baggage.includes('gun')){
+    //         console.log('NOT allowed')
+    //     } else console.log('Welcome aboard')
+    // }
+
+    // checkBaggage('I have a laptop and a phone')
+    // checkBaggage('Have a gun and a knife')
+
+    // const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ')
+    // console.log(firstName, lastName)
+
+    // const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ')
+    // console.log(newName)
+
+    // const capitalizeName = function(name){
+    //     const names = name.split(' ')
+    //     const namesUpper = []
+
+    //     for(const n of names){
+    //         // namesUpper.push(n[0].toUpperCase() + n.slice(1))
+    //         namesUpper.push(n.replace(n[0], n[0].toUpperCase()))
+    //     }
+    //     console.log(namesUpper.join(' '))
+    // }
+    // capitalizeName('jessica ann smith davis')
+
+    //padding
+    const message = 'Go to gate 23'
+    // console.log(message.padStart(25, '+'))
+
+    // console.log((message.padStart(25, '+')).padEnd(35, '+'))
+    // const maskCreditCard = function(number){
+    //     const str = number + ''
+    //     const last = str.slice(-4)
+    //     return last.padStart(str.length, '*')
+    // }
+    // // console.log(maskCreditCard(4577862245))
+    // // console.log(maskCreditCard('78423651287'))
+
+    // //Repeat
+    // const message1 = 'Bad weather. All flights delayed..'
+    // console.log(message1.repeat(5))
+
+    // document.body.append(document.createElement('textarea'));
+    // document.body.append(document.createElement('button'));
+
+    
+    // document.querySelector('button').addEventListener('click', function(){
+    //     const text = document.querySelector('textarea').value
+    //     const rows = text.split('\n')
+    //     console.log(rows)
+
+    //     for(const [i, row] of rows.entries()){
+    //         const [first, second] = row.toLowerCase().trim().split('_')
+    //         const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`
+
+    //         console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`)
+    //     }
+    // })
+
+
+    //Coding challenge
+  //   const flights =
+  // '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30'
+
+  // console.log(flights.split('+'))
+
+  // for(const flight of flights.split('+')){
+
+  //   const [type, from, to, time] = flight.split(';')
+  //   const output = `${type.startsWith('_Delayed') ? '🔴' : ''} ${type.replace(/_/g, ' ').trim()} from ${from.slice(0, 3).toUpperCase()} to ${to.slice(0, 3).toUpperCase()} ${time.replace(':', 'hr')}`.padStart(43)
+  //   console.log(output)
+  // }
+
+
+  //Functions
+
+  // const bookings = []
+
+  // const createbooking = function(flightNum, numPassengers = 1, price = 199 * numPassengers){
+  //   const booking = {
+  //     flightNum,
+  //     numPassengers,
+  //     price
+  //   }
+  //   console.log(booking)
+  //   bookings.push(booking)
+  // }
+  
+  // createbooking('LH123')
+  // createbooking('LH123', 2, 800)
+
+  // const flight = 'LH234'
+  // const jonas = {
+  //   name: 'Jonas Schedtmann',
+  //   passport: 24739479284
+  // }
+
+  // const checkIn = function(flightNum, passenger){
+  //   flightNum = 'LH999'
+  //   passenger.name = 'Mr. ' + passenger.name
+
+  //   if(passenger.passport === 24739479284)
+  //   alert('Checked in')
+  //   else alert('Wrong passenger')
+  // }
+
+  // checkIn(flight, jonas)
+  // console.log(flight)
+  // console.log(jonas)
+
+  // const newPassport = function (person){
+  //   person.passport = Math.floor(Math.random() * 1000000)
+  // }
+
+  // newPassport(jonas)
+  // checkIn(flight, jonas)
+
+  //Higher order functions
+  const oneWord = function(str){
+    return str.replace(/ /g, '').toLowerCase()
+  }
+
+  const upperFirstWord = function(str){
+    const [first, ...others] = str.split(' ')
+    return [first.toUpperCase(), ...others].join(' ')
+  }
+
+  const transformer = function (str, fn){
+    console.log(`Original string: ${str}`)
+    console.log(`Transformed string: ${fn(str)}`)
+
+    console.log(`Transformed by ${fn.name}`)
+  }
+
+  // transformer('Javascript is wonderfull!!', upperFirstWord)
+  // transformer('Javascript is wonderfull!!', oneWord)
+
+
+  // // const greet = function (greeting){
+  // //   return function(name){
+  // //     console.log(`${greeting} ${name}`)
+  // //   } 
+  // // }
+
+  // const greet = greeting =>  (name) => 
+  //     console.log(`${greeting} ${name}`)
+
+  // const greeterCall = greet('Hey')
+  // greeterCall('Jonas')
+  // greeterCall('Williams')
+  // greet('Hello')('Jonas')
+
+  // const lufthansa = {
+  //   airline: 'Lufthansa',
+  //   iataCode: 'LH',
+  //   booking: [],
+  //   book(flightNum, name){
+  //     console.log(
+  //       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+  //     )
+  //     this.booking.push({flight: `${this.iataCode}${flightNum}`, name})
+  //   }
+  // }
+  // lufthansa.book('40', 'Jonas')
+
+  // console.log(lufthansa)
+
+  // const eurowings = {
+  //   airline: 'Eurowings',
+  //   iataCode: 'EW',
+  //   booking: []
+  // }
+
+  // const swiss = {
+  //   airline: 'Swiss Air Lines',
+  //   iataCode: 'LX',
+  //   booking: []
+  // }
+  // const book = lufthansa.book
+  // book(23,'Sara Williams') // poduces error as this is a regular function call,so         this keyword does not exist
+
+  // book.call(eurowings, 23, 'Jonas')
+  // book.call(swiss, 583, 'Mary Cooper')
+
+  // const flightData = [583, 'George Cooper']
+  // book.apply(swiss,flightData)
+
+  //Bind method
+  // const bookEW = book.bind(eurowings)
+  // bookEW(23, 'Steven Williams')
+
+  // const bookEW2 = book.bind(eurowings, 23)
+  // bookEW2('Jonas Schmedtmann')
+  // bookEW2('Martha Cooper')
+
+  // const addTax = (rate, value) => value + value * rate
+  // console.log(addTax(0.1, 200))
+
+  // const addVAT = addTax.bind(null, 0.23)    //same as addTAX = value + value * 0.23
+  // console.log(addVAT(100))
+  // console.log(addVAT(12))
+
+  // const addTax = function(rate){
+  //   return function(value){
+  //     console.log(value + value * rate)
+  //   }
+  // }
+
+  // const addVAT = addTax(0.1)
+  // addVAT(200)
+
+  //Coding challenge
+  // const poll = {
+  //   question: "What is your favourite programming language?",
+  //   options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+  //   answers: new Array(4).fill(0),
+
+  //   //Get answer
+  //   registerNewAnswer(){
+  //   const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`
+  //   )
+  //   )
+  //   console.log(answer)
+
+  //   //Register answer
+  //   typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++
+    
+  //   this.displayResults()
+  //   this.displayResults('string')
+  //   },
+    
+  //   displayResults(type = 'array'){
+  //     if(type === 'array'){
+  //       console.log(this.answers)
+  //     }
+  //     else if(type === 'string'){
+  //       console.log(`Poll results are ${this.answers.join(',')}`)
+  //     }
+  //   }
+  //   }
+  //   poll.displayResults.call({answers: [5, 2, 3]}, 'string')
+
+
+//Immediately invoked functioon expression
+const runOnce = function(){
+  console.log('This will never run again')
+}
+runOnce();
+
+//IIFE
+(function(){
+  console.log('This will never run again')
+})()
