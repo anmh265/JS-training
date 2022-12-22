@@ -1648,12 +1648,253 @@ const game = {
 
 
 //Immediately invoked functioon expression
-const runOnce = function(){
-  console.log('This will never run again')
-}
-runOnce();
+// const runOnce = function(){
+//   console.log('This will never run again')
+// }
+// runOnce();
 
 //IIFE
-(function(){
-  console.log('This will never run again')
-})()
+// (function(){
+//   console.log('This will never run again')
+// })()
+
+//CLOSURE
+// const secureBooking = function(){
+//   let passengerCount = 0
+
+//   return function(){
+//     passengerCount++
+//     console.log(`${passengerCount} passenger${passengerCount === 1 ? '': 's'}`)
+//   }
+// }
+// const booker = secureBooking()
+// booker()
+// booker()
+// booker()
+// console.dir(booker)
+
+// let f
+// const g = function(){
+//   const a = 23
+//   f = function (){
+//     console.log(a * 2)
+//   }
+// }
+// const h = function(){
+//   const b = 77
+//   f = function (){
+//     console.log(b * 2)
+//   }
+// }
+// g()
+// f()
+
+// h()
+// f()
+// console.dir(f)
+
+// const boradPassengers = function(n, wait){
+//   const perGroup = n / 3
+//   setTimeout(function(){
+//     console.log(`We are now boarding all ${n} passengers`)
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`)
+//   }, wait * 1000)
+
+//   console.log(`Will satrt booking in ${wait} seconds`)
+// }
+// boradPassengers(180, 3)
+
+
+//ARRAYS//
+// let arr = ['a', 'b', 'c', 'd', 'e']
+
+//SLICE
+// console.log(arr.slice(2))
+// console.log(arr.slice(2, 4))
+// console.log(arr.slice(-2))
+// console.log(arr.slice(-4, -1))
+// console.log(arr.slice())
+
+//SPLICE
+// console.log(arr.splice(2))
+// console.log(arr.splice(-1))
+// console.log(arr.splice(1, 2+))
+// console.log(arr)
+
+//REVERSE
+// console.log(arr.reverse())
+// console.log(arr)
+
+
+//CONCAT
+// let arr2 = ['j', 'i', 'h', 'g', 'f']
+// let letters = arr.concat(arr2.reverse())
+// console.log(letters)
+
+// //JOIN
+// console.log(letters.join('-'))
+
+//AT
+// const arr = [10, 15, 20]
+// console.log(arr.at(0))
+
+// //getting last element of an array
+// console.log(arr[arr.length - 1])
+// console.log(arr.slice(-1)[0])
+// console.log(arr.at(-1))
+
+// console.log('jonas'.at(1))
+
+//ForEach()
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// for(const [i, movement] of movements.entries()){
+//   if(movement > 0){
+//     console.log(`Movement ${i + 1}: You deposited ${movement}`)
+//   }
+//   else {
+//     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`)
+//   }
+// }
+
+// for(const movement of movements){
+//   if(movement > 0)
+//   console.log(`You deposited ${movement}`)
+//   else 
+//   console.log(`You withdrew ${Math.abs(movement)}`)
+// }
+
+// console.log(`\n forEACH()`)
+// movements.forEach(function(movement){
+//   if(movement > 0)
+//   console.log(`You deposited ${movement}`)
+//   else 
+//   console.log(`You withdrew ${Math.abs(movement)}`)
+// })
+
+// movements.forEach(function(mov, i, arr){
+//   if(mov > 0){
+//     console.log(`Movement ${i + 1}: You deposited ${mov}`)
+//   }
+//   else {
+//     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`)
+//   }
+// })
+
+// MAP forEach()
+// const currencies = new Map([
+//   ['USD', 'United Sates dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling']
+// ])
+
+// currencies.forEach(function(value, key, map){
+//   console.log(`${key}: ${value}`)
+// })
+
+// //SET forEach()
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR'])
+// currenciesUnique.forEach(function(value, key, map){
+//   console.log(`${key}: ${value}`)
+// })
+
+//Coding challenge
+
+// const checkdogs = function(dogsJulia, dogsKate){
+//   const newDogsJulia = dogsJulia.slice(1, -2)
+//   const totalDogList = newDogsJulia.concat(dogsKate)
+  
+//   totalDogList.forEach(function(value, i){
+//     value < 3 ? console.log(`Dog number ${i + 1} is still a puppy 🐶`): console.log(`Dog number ${i + 1} is an adult`)
+//   })
+// }
+// checkdogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+// // checkdogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4])
+
+//map()
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+const euroToUsd = 1.1
+
+// const movementsUsd = movements.map(function(mov){
+//   return mov * euroToUsd
+// })
+const movementsUsd = movements.map(mov => mov * euroToUsd)
+
+console.log(movements)
+console.log(movementsUsd)
+
+const movementsUsdfor = []
+for(const mov of movements)
+movementsUsdfor.push(mov * euroToUsd)
+console.log(movementsUsdfor)
+
+const movementsDescription = movements.map((mov, i, arr) =>
+
+  `Movement ${i + 1}: You ${mov > 0 ? 'deposited': 'withdrew'} ${Math.abs(mov)}`
+  // if(mov > 0){
+  //   return `Movement ${i + 1}: You deposited ${mov}`
+  // }
+  // else {
+  //   return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`
+  // }
+)
+// console.log(movementsDescription)
+
+// //filter()
+// const  deposits = movements.filter(function(mov){
+//   return mov > 0
+// })
+// console.log(movements)
+// console.log(deposits)
+
+// const depositsFor = []
+// for(const mov of movements){
+//   if(mov > 0)
+//   depositsFor.push(mov)
+// }
+// console.log(depositsFor)
+
+// const withdrawals = movements.filter(mov => mov < 0)
+// console.log(withdrawals)
+
+//reduce()
+// const balance = movements.reduce(function(acc, curr, i, arr){
+//   console.log(`Iteration ${i}: ${acc}`)
+//   return acc + curr
+// }, 0)
+
+// const balance = movements.reduce((acc, curr) => acc + curr, 0)
+
+// console.log(balance)
+
+// //max value
+
+// const max = movements.reduce((acc, mov) => {
+//   if(acc > mov)
+//   return acc
+//   else return mov
+// }, movements[0])
+// console.log(max)
+
+//CODING CHALLENGE
+// const calcAverageHumanAge = function(ages){
+//   // const humanAges = ages.map(age => age <= 2 ? 2 * age: 16 + age * 4).filter(age => age < 18)
+//   const humanAges = ages.map(age => age <= 2 ? 2 * age: 16 + age * 4).reduce((acc, age) => acc + age, 0)/ ages.length
+//   return humanAges
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]))
+
+// const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * euroToUsd).reduce((acc, mov) => acc + mov, 0)
+// // console.log(totalDepositsUSD)
+
+// //Coding challenge 
+// const calcAverageHumanAge = ages => ages.map(age => age <= 2 ? 2 * age: 16 + age * 4).filter(age => age >= 18).reduce((acc, age) => acc + age / ages.length, 0)
+
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]))
+
+//find()
+const firstWithdrawal = movements.find(mov => mov < 0)
+
+console.log(movements)
+console.log(firstWithdrawal)
