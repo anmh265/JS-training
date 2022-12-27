@@ -2111,17 +2111,211 @@ const future = new Date(2037, 10, 19, 15, 23)
 // future.setFullYear(2040)
 // console.log(future)
 
-
-function increment(x){
-  if(x>0){
+//*****************Recursion******************
+// function increment(x){
+//   if(x>0){
     
-    increment(x-1)
-    console.log(x)
-  }
-  else return 
-}
-increment(3)
+//     increment(x-1)
+//     console.log(x)
+//   }
+//   else return 
+// }
+// increment(3)
+
+
+
+
+
 
 // const calcDaysPassed = (date1, date2) => Math.abs((date2 - date1) / (1000 * 60 * 60 * 24))
 // const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24))
 // console.log(days1)
+
+
+// const num = 3884797.23
+// // const options = {
+// //   style: 'unit',
+// //   unit: 'celsius'
+// // }
+
+// // const options = {
+// //   style: 'percentage',
+// //   unit: 'celsius'
+// // }
+
+// const options = {
+//   style: 'currency',
+//   currency: 'EUR',
+//   // useGrouping: false
+// }
+
+// console.log(navigator.language, new Intl.NumberFormat(navigator.language, options).format(num))
+// console.log('US: ', new Intl.NumberFormat('en-US', options).format(num))
+// console.log('US: ', new Intl.NumberFormat('en-US').format(num))
+
+// console.log('US: ', new Intl.NumberFormat('en-US', options).format(num))
+
+
+//setTimeout
+
+// setTimeout(()=> console.log(`Here is your pizza`), 3000)
+
+// const ingredients = ['spinach', 'olive']
+// setTimeout((ing1, ing2) => 
+//   console.log(`Pizza with ${ing1} ${ing2}`)
+// , 2000, ...ingredients)
+
+//setInterval
+
+// setInterval(function(){
+//   const now = new Date()
+//   console.log(now)
+// },1000)
+
+
+
+//Constructor functions
+
+const Person = function(firstName, birhtYear){
+  // console.log(this)
+  this.firstName = firstName
+  this.birhtYear = birhtYear
+
+}
+
+const jonas = new Person('Jonas', 1991)
+// console.log(jonas)
+
+const matilda = new Person('Matilda', 2017)
+const jack = new Person('Jack', 1975)
+// console.log(matilda)
+// console.log(jack)
+
+Person.hey = function(){
+  console.log(`Hey there ${this.firstName}!!`)
+}
+
+Person.hey()
+jonas.hey()
+
+const jay = 'Jay'
+// console.log(jonas instanceof Person)
+// console.log(jay instanceof Person)
+
+// console.log(Person.prototype)
+
+// Person.prototype.calcAge = function(){
+//   console.log(2037 - this.birhtYear)
+// }
+// console.log(Person.prototype)
+
+// console.log(Person.prototype)
+
+// jonas.calcAge()
+
+// console.log(jonas.__proto__.__proto__.__proto__)
+// console.log(jonas.__proto__ === Person.prototype)
+
+// console.log(Person.prototype.isPrototypeOf(jonas))
+// console.log(Person.prototype.isPrototypeOf(matilda))
+// console.log(Person.prototype.isPrototypeOf(Person))
+
+// Person.prototype.species = 'Homo Sapiens'
+// console.log(jonas.species, matilda.species)
+
+// console.log(jonas.hasOwnProperty('species'))
+// console.log(jonas.hasOwnProperty('firstName'))
+
+// console.log(jonas.__proto__.__proto__)
+// console.log(jonas.__proto__.__proto__.__proto__)
+
+// const arr = [3, 6, 4, 5, 6, 9, 3]
+// console.log(arr.__proto__)
+// console.log(arr.__proto__ === Array.prototype)
+
+// Array.prototype.unique = function(){
+//   return [...new Set(this)]
+//
+
+// console.log(arr.unique())
+// console.dir(x => x + 1)
+
+
+//Coding challenge
+
+// const Car = function(make, speed){
+//   this.make = make
+//   this.speed = speed
+// }
+
+// Car.prototype.accelerate = function(){
+//   this.speed += 10
+//   console.log(`${this.make} going at ${this.speed}km/hr`)
+// }
+
+// Car.prototype.brake = function(){
+//   this.speed -= 5
+//   console.log(`${this.make} going at ${this.speed}km/hr`)
+// }
+
+// const bmw = new Car('BMW', 120)
+// console.log(bmw)
+// bmw.accelerate()
+
+// const mercedes = new Car('Mercedes', 95)
+// mercedes.accelerate()
+
+// bmw.accelerate()
+// bmw.brake()
+
+// mercedes.accelerate()
+// mercedes.brake()
+
+//Classes
+
+class PersonCl {
+  constructor (fullName, birthYear){
+    this.fullName = fullName
+    this.birthYear = birthYear
+  }
+  //Methods will be added to the .prototype prototype
+  calcAge(){
+    console.log(2037 - this.birthYear)
+  }
+
+  get age(){
+    return 2037 - this.birthYear
+  }
+
+  set fullName(name){
+    console.log(name)
+    if(name.includes(' ')) this._fullName = name
+    else alert(`${name} is not full name`)
+  }
+
+  get fullName(){
+    return this._fullName
+  }
+}
+
+const jessica = new PersonCl('Jessica Davis' , 1991)
+// jessica.calcAge()
+// console.log(jessica.age)
+
+// const account = {
+//   owner: 'Jonas',
+//   movements: [200, 530, 120, 300],
+
+//   get latest(){
+//     return this.movements.slice(-1).pop()
+//   },
+
+//   set latest(mov){
+//     this.movements.push(mov)
+//   }
+// }
+
+// console.log(account.latest)
+
+// account.latest = 50
+// console.log(account.movements)
