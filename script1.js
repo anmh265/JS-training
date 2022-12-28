@@ -2176,29 +2176,29 @@ const future = new Date(2037, 10, 19, 15, 23)
 
 //Constructor functions
 
-const Person = function(firstName, birhtYear){
-  // console.log(this)
-  this.firstName = firstName
-  this.birhtYear = birhtYear
+// const Person = function(firstName, birhtYear){
+//   // console.log(this)
+//   this.firstName = firstName
+//   this.birhtYear = birhtYear
 
-}
+// }
 
-const jonas = new Person('Jonas', 1991)
-// console.log(jonas)
+// const jonas = new Person('Jonas', 1991)
+// // console.log(jonas)
 
-const matilda = new Person('Matilda', 2017)
-const jack = new Person('Jack', 1975)
-// console.log(matilda)
-// console.log(jack)
+// const matilda = new Person('Matilda', 2017)
+// const jack = new Person('Jack', 1975)
+// // console.log(matilda)
+// // console.log(jack)
 
-Person.hey = function(){
-  console.log(`Hey there ${this.firstName}!!`)
-}
+// Person.hey = function(){
+//   // console.log(`Hey there ${this.firstName}!!`)
+// }
 
-Person.hey()
-jonas.hey()
+// Person.hey()
+// jonas.hey()
 
-const jay = 'Jay'
+// const jay = 'Jay'
 // console.log(jonas instanceof Person)
 // console.log(jay instanceof Person)
 
@@ -2296,9 +2296,29 @@ class PersonCl {
   get fullName(){
     return this._fullName
   }
+
+  //static method
+  static hey(){
+    console.log('hi there')
+  }
 }
 
-const jessica = new PersonCl('Jessica Davis' , 1991)
+class StudentCl extends PersonCl{
+  constructor(fullName, birthYear, course){
+    super(fullName, birthYear)
+    this.course = course
+  }
+
+  introduce(){
+    console.log(`My name is ${this.fullName} and I study ${this.course}`)
+  }
+}
+
+// const martha = new StudentCl('Martha Jones', 2012, 'Computer Science')
+// martha.introduce()
+// martha.calcAge()
+
+// const jessica = new PersonCl('Jessica Davis' , 1991)
 // jessica.calcAge()
 // console.log(jessica.age)
 
@@ -2319,3 +2339,162 @@ const jessica = new PersonCl('Jessica Davis' , 1991)
 
 // account.latest = 50
 // console.log(account.movements)
+
+const PersonProto = {
+  calcAge(){
+    console.log(2037 - this.birthYear)
+  },
+
+  init(firstName, birthYear){
+    this.firstName = firstName
+    this.birthYear = birthYear
+  }
+}
+const steven = Object.create(PersonProto)
+const StudentProto = Object.create(PersonProto)
+
+StudentProto.init = function(firstName, birthYear, course){
+  PersonProto.init.call(this, firstName, birthYear)
+  this.course = course
+}
+
+const jay = Object.create(StudentProto)
+jay.init('Jay', 1991, 'Computer Science')
+
+StudentProto.introduce = function(){
+  console.log(`My name is ${this.firstName} and I study ${this.course}`)
+}
+
+// jay.introduce()
+// jay.calcAge()
+
+// console.log(steven)
+// steven.name = 'Steven'
+// steven.birthYear = 2002
+// steven.calcAge()
+// console.log(steven.__proto__ === PersonProto)
+
+// const sarah = Object.create(PersonProto)
+// sarah.init('Sarah', 1989)
+// sarah.calcAge()
+
+//Coding challenge
+
+// class Car{
+//   constructor(make, speed){
+//     this.make = make
+//     this.speed = speed
+//   }
+
+//   accelerate(){
+//       this.speed += 10
+//       console.log(`${this.make} going at ${this.speed}km/hr`)  
+//   }
+
+//   brake(){
+//       this.speed -= 5
+//       console.log(`${this.make} going at ${this.speed}km/hr`)
+//     }
+
+//   get speedUS(){
+//     return this.speed / 1.6
+//   }
+
+//   set speedUs(speed){
+//     this.speed = speed * 1.6
+//   }
+// }
+
+// const ford = new Car('Ford', 120)
+// ford.speedUS
+// ford.accelerate()
+// ford.accelerate()
+
+// ford.speed = 50
+// console.log(ford)
+
+
+const Person = function(firstName, birhtYear){
+  // console.log(this)
+  this.firstName = firstName
+  this.birhtYear = birhtYear
+}
+
+Person.prototype.calcAge = function(firstName, birthYear){
+  console.log(2037 - this.birthYear)
+}
+const Student = function(firstName, birthYear, course){
+  Person.call(this, firstName, birthYear)
+  this.course = course
+}
+
+// Student.prototype = Object.create(Person.prototype)
+
+// Student.prototype.introduce = function(){
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`)
+// }
+
+// const mike = new Student('Mike', 2020, 'Computer Science')
+
+// console.log(mike)
+// mike.introduce()
+// // mike.calcAge()
+
+// Student.prototype.constructor = Student
+// console.dir(Student.prototype.constructor)
+
+
+//Coding challenge
+// const Car = function(make, speed){
+//   this.make = make
+//   this.speed = speed
+// }
+
+// Car.prototype.accelerate = function(){
+//   this.speed += 10
+//   console.log(`${this.make} going at ${this.speed}km/hr`)
+// }
+
+// Car.prototype.brake = function(){
+//   this.speed -= 5
+//   console.log(`${this.make} going at ${this.speed}km/hr`)
+// }
+
+// const EV = function(make, speed, charge){
+//   Car.call(this, make, speed)
+//   this.charge = charge
+// }
+
+// EV.prototype = Object.create(Car.prototype)
+
+// EV.prototype.chargeBattery = function(chargeTo){
+//   this.charge = chargeTo
+// }
+
+// EV.prototype.accelerate = function(){
+//   this.speed += 20
+//   this.charge--
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h with a charge of ${this.charge}`
+//   )
+// }
+
+// const tesla = new EV('Tesla', 120, 23)
+// tesla.chargeBattery(90)
+// console.log(tesla)
+// tesla.brake()
+// tesla.accelerate()
+
+
+class Account {
+  constructor(owner, currency, pin){
+    this.owner = owner
+    this.currency = currency
+    this.pin = pin
+    this.movements = []
+    this.locale = navigator.language
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111)
+console.log(acc1)
