@@ -2417,7 +2417,7 @@ StudentProto.introduce = function(){
 const Person = function(firstName, birhtYear){
   // console.log(this)
   this.firstName = firstName
-  this.birhtYear = birhtYear
+  this.birthYear = birthYear
 }
 
 Person.prototype.calcAge = function(firstName, birthYear){
@@ -2445,17 +2445,17 @@ const Student = function(firstName, birthYear, course){
 
 
 //Coding challenge
-// const Car = function(make, speed){
+// const CarCl = function(make, speed){
 //   this.make = make
 //   this.speed = speed
 // }
 
-// Car.prototype.accelerate = function(){
+// CarCl.prototype.accelerate = function(){
 //   this.speed += 10
 //   console.log(`${this.make} going at ${this.speed}km/hr`)
 // }
 
-// Car.prototype.brake = function(){
+// CarCl.prototype.brake = function(){
 //   this.speed -= 5
 //   console.log(`${this.make} going at ${this.speed}km/hr`)
 // }
@@ -2465,7 +2465,7 @@ const Student = function(firstName, birthYear, course){
 //   this.charge = charge
 // }
 
-// EV.prototype = Object.create(Car.prototype)
+// EV.prototype = Object.create(CarCl.prototype)
 
 // EV.prototype.chargeBattery = function(chargeTo){
 //   this.charge = chargeTo
@@ -2487,14 +2487,109 @@ const Student = function(firstName, birthYear, course){
 
 
 class Account {
+  //Public field
+  locale = navigator.language
+
+  //Private fields
+  #movements = []
+  #pin
+
   constructor(owner, currency, pin){
     this.owner = owner
     this.currency = currency
-    this.pin = pin
-    this.movements = []
-    this.locale = navigator.language
+
+    //protected property
+    this.#pin = pin
+    // this._movements = []
+    // this.locale = navigator.language
+  }
+
+  //Public methods
+  getMovements(){
+    return this.#movements
+  }
+
+  deposit(val){
+    this.#movements.push(val)
+    return this
+  }
+
+  withdrawal(val){
+    this.deposit(-val)
+    return this
+  }
+
+  requestLoan(val){
+    // if(this.#approveLoan(val)){
+    if(this._approveLoan(val)){
+      this.deposit(val)
+      console.log('Loan approved')
+      return this
+    }
+  }
+
+  //Private methods
+  _approveLoan(val){
+    return true
   }
 }
 
 const acc1 = new Account('Jonas', 'EUR', 1111)
-console.log(acc1)
+
+// acc1.deposit(250)
+// acc1.withdrawal(140)
+// acc1.requestLoan(1000)
+
+// console.log(acc1.getMovements())
+// console.log(acc1)
+// // console.log(acc1.#movements)
+// // console.log(acc1.#pin)
+// // console.log(acc1.#approveLoan())
+
+// acc1.deposit(300).deposit(500).withdrawal(35).requestLoan(25000).withdrawal(4000)
+// console.log(acc1.getMovements())
+
+
+//Coding challenge
+const CarCl = function(make, speed){
+  this.make = make
+  this.speed = speed
+
+}
+
+CarCl.prototype.accelerate = function(){
+  this.speed += 10
+  console.log(`${this.make} going at ${this.speed}km/hr`)
+}
+
+CarCl.prototype.brake = function(){
+  this.speed -= 5
+  console.log(`${this.make} going at ${this.speed}km/hr`)
+  return this
+}
+
+class EVCL extends CarCl{
+  #charge
+
+  constructor (make, speed, charge){
+    super(make, speed)
+    this.#charge = charge
+  }
+  
+chargeBattery(chargeTo){
+    this.charge = chargeTo
+    return this
+  }
+  
+accelerate(){
+    this.speed += 20
+    this.#charge--
+    console.log(
+      `${this.make} is going at ${this.speed} km/h with a charge of ${this.#charge}`
+    )
+    return this
+  }
+}
+
+const rivian = new EVCL('Rivian', 120, 23)
+rivian.accelerate().accelerate().accelerate().chargeBattery(50).brake()
