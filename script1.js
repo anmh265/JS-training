@@ -2112,15 +2112,15 @@ const future = new Date(2037, 10, 19, 15, 23)
 // console.log(future)
 
 //*****************Recursion******************
-// function increment(x){
-//   if(x>0){
+function increment(x){
+  if(x>0){
     
-//     increment(x-1)
-//     console.log(x)
-//   }
-//   else return 
-// }
-// increment(3)
+    increment(x-1)
+    console.log(x)
+  }
+  else return 
+}
+increment(3)
 
 
 
